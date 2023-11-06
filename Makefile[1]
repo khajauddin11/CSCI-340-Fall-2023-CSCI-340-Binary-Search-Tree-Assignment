@@ -1,0 +1,34 @@
+# Makefile for the binary search tree assignment
+
+# Compiler
+CXX = g++
+
+# Compiler flags
+CXXFLAGS = -Wall -std=c++11
+
+# Define the target executable
+TARGET = bst
+
+# Define the source files
+SRC = bst.cc
+
+# Define the object files based on the source files
+OBJ = $(SRC:.cc=.o)
+
+# Define header files
+HEADERS = binarytree.h binarysearchtree.h node.h
+
+# Rule to create the executable
+$(TARGET): $(OBJ) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
+
+# Rule to create object files
+%.o: %.cc $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean target to remove all the objects and executables
+clean:
+	rm -f $(TARGET) $(OBJ)
+
+# PHONY targets are not associated with files
+.PHONY: clean
